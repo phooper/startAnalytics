@@ -307,11 +307,6 @@ s.visitor = Visitor.getInstance("65D316D751E563EC0A490D4C@AdobeOrg");
 /* Sets global variable values in Analytics */
 s.server=document.domain;
 s.eVar1=s.prop1="FullSite";
-if (s.eVar45) {
-  s.prop5="hot";
-} else {
-  s.prop5="cold";
-};
 s.prop34 = (typeof(Visitor) != "undefined" ? "VisitorAPI Present" : "VisitorAPI Missing");
 s.eVar55="D=g"
 s.prop55="D=g"
@@ -337,18 +332,21 @@ s.doPlugins=function(s){ /*Util.getQueryParam key is case sensitive. The Javascr
 
     s.prop4=s_getLoadTime();
 
- // Customer ID for alias eVar45 and SOuthW3st
+ // Customer ID for alias eVar45 and SOuthW3st and seting prop5 to Customer login state
 	if(s.eVar45){
+		s.prop5="hot";
 		visitor.setCustomerIDs({
 			"eVar45": {
 				"id":s.eVar45,
-				"authState":Visitor.AuthState.AUTHENTICATED
+				"authState":myVisitor.AuthState.AUTHENTICATED
 			},
 			"SOuthW3st": {
 				"id":s.eVar45,
-				"authState":Visitor.AuthState.AUTHENTICATED
+				"authState":myVisitor.AuthState.AUTHENTICATED
 			}
 		});
+	} else {
+		s.prop5="cold";
 	} 
 
 // Customer ID for alias eVar38
